@@ -10,10 +10,11 @@ class Margaret:
                 deserialized_messages = pickle.load(m)
 
         except (FileNotFoundError, EOFError):
-            deserialized_messages = {
-                "Margaret": [],
-                "Mary": []
-            }
+            deserialized_messages = {}
+
+
+        if "Margaret" not in deserialized_messages:
+            deserialized_messages["Margaret"] = []
         deserialized_messages["Margaret"].append(messages)
 
         with open('messages.p', 'wb+') as m:
